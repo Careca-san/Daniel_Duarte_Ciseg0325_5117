@@ -65,23 +65,31 @@ def menu():
         print("Opção inválida. Tente novamente.")
         menu()
 
+while True:
+    try:
+        tamanho = int(input("Digite o tamanho da lista: "))
+        if 1 <= tamanho <= 50:
+            break
+        else:
+            print("O tamanho da lista deve ser entre 1 e 50")
+    except (ValueError, TypeError):
+        print("Por favor insira um número entre 1 e 50")
 
-tamanho = int(input("Digite o tamanho da lista: "))
-while tamanho > 50 or tamanho <= 0:
-    print("O tamanho da lista deve ser entre 1 e 50")
-    tamanho = int(input("Digite o tamanho da lista: "))
 
 i = 1
-while i <= tamanho:
-    valor = int(input(f"Digite o {i}º valor : "))
-    
-    if valor <= 0 or valor > 1000:
-        print("O valor deve ser entre 1 e 1000")
-        continue
-    else:
-        lista.append(valor)
-        i += 1
-
+while True:
+    try:
+        valor = int(input(f"Digite o {i}º valor : "))
+        if valor <= 0 or valor > 1000:
+            print("O valor deve ser entre 1 e 1000")
+            continue
+        elif i >= tamanho:
+            break
+        else:
+            lista.append(valor)
+            i += 1    
+    except (ValueError, TypeError):
+        print("Por favor insira um número entre 1 e 1000")
 
     if (i - 1) % 10 == 0 and i < tamanho:
         escolha = input("Pretende continuar a inserir valores? (s/n): ")
@@ -91,7 +99,6 @@ while i <= tamanho:
             continue
         else:
             print("Opção inválida. Tente novamente.")
-            continue
 
 def verificar_primo(num):
     if num < 2:
